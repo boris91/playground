@@ -8,7 +8,7 @@ module.exports = {
 	entry: {
 		app: [
 			'babel-polyfill',
-			'./src/client/app'
+			'./src/client/app/app'
 		]
 	},
 	output: {
@@ -18,7 +18,7 @@ module.exports = {
 	},
 	module: {
 		loaders: [{
-			test: /\.html$/,
+			test: /\.(html|ico)$/,
 			include: CLIENT_SRC_PATH,
 			loader: 'file',
 			query: { name: '[name].[ext]' }

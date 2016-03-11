@@ -1,48 +1,26 @@
 require('./.styl');
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 
-class PersonView extends React.Component {
-	static get nameFieldDomProps() {
-		return {
-			className: 'name',
-			key: 0
-		};
-	}
+const PERSONS_LIST_DOM_PROPS = { className: 'persons-list' };
+const PERSON_DOM_PROPS = { className: 'person-item' };
+const PERSON_NAME_DOM_PROPS = { className: 'name', key: 0 };
+const PERSON_AGE_DOM_PROPS = { className: 'age', key: 1 };
 
-	static get ageFieldDomProps() {
-		return {
-			className: 'age',
-			key: 1
-		};
-	}
-
-	static get viewDomProps() {
-		return {
-			className: 'person-item'
-		};
-	}
-
-	static get containerDomProps() {
-		return {
-			className: 'persons-list'
-		};
-	}
-
+export class PersonView extends React.Component {
 	static createView(model) {
 		return React.createElement(PersonView, model);
 	}
 
 	static renderViews(views, root) {
-		let viewsContainer = React.createElement('div', PersonView.containerDomProps, views);
+		let viewsContainer = React.createElement('div', PERSONS_LIST_DOM_PROPS, views);
 		ReactDOM.render(viewsContainer, root);
 	}
 
 	render() {
-		let nameElem = React.createElement('div', PersonView.nameFieldDomProps, `${this.props.name}`);
-		let ageElem = React.createElement('div', PersonView.ageFieldDomProps, `${this.props.age}`);
-		return React.createElement('div', PersonView.viewDomProps, [nameElem, ageElem]);
+		let nameElem = React.createElement('div', PERSON_NAME_DOM_PROPS, `${this.props.name}`);
+		let ageElem = React.createElement('div', PERSON_AGE_DOM_PROPS, `${this.props.age}`);
+		return React.createElement('div', PERSON_DOM_PROPS, [nameElem, ageElem]);
 	}
-}
-
-export {PersonView};
+};
