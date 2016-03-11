@@ -1,0 +1,31 @@
+.persons-list
+	display: inline-block
+	font-family: "Courier New", Courier, monospace
+	background-color: lightseagreen
+	border: solid lightsalmon 2px
+	border-radius: 10px
+
+	&>.person-item
+		display: block
+		color: rgba(255, 255, 255, 0.9)
+		background-color: rgba(0, 0, 0, 0.3)
+		border-radius: 5px
+		padding: 2px 5px 2px 5px
+		margin: 3px
+		cursor: pointer
+
+		&>.name
+			display: inline-flex
+			margin-right: 5px
+		&>.age
+			float: right
+			background-color: lightsalmon
+			border-radius: 9px
+			padding: 0 3px 0 3px
+
+		&:hover
+			background-color: rgba(255, 255, 255, 0.5)
+			color: rgba(0, 0, 0, 0.5)
+			font-weight: bold
+			&>.age
+				background-color: rgba(255, 255, 255, 0.9)
