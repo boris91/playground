@@ -1,6 +1,6 @@
-require('./index.html');
-require('./app.styl');
-require('./img/favicon-32x32.ico');
+import './index.html';
+import './app.styl';
+import './img/favicon-32x32.ico';
 
 import {PCComponentCtrl} from '../modules/pc-component/ctrl';
 new PCComponentCtrl([

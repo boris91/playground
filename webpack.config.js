@@ -26,7 +26,7 @@ module.exports = {
 			test: /\.js$/,
 			include: CLIENT_SRC_PATH,
 			loader: 'babel',
-			query: { presets: ['es2015'] }
+			query: { presets: ['es2015', 'react'] }
 		}, {
 			test: /\.styl$/,
 			include: CLIENT_SRC_PATH,
