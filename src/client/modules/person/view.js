@@ -13,8 +13,8 @@ export class PersonView extends React.Component {
 
 	render() {
 		return <div className='person-item'>
-			<div className='name'></div>
-			<div className='age'></div>
+			<div className='name'>{this.props.name}</div>
+			<div className='age'>{this.props.age}</div>
 		</div>;
 	}
 };

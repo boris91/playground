@@ -1,8 +1,7 @@
 const Path = require('path');
-//const  HtmlWebpackPlugin = require('html-webpack-plugin');
 const AutoprefixerStylus = require('autoprefixer-stylus');
-
-const CLIENT_SRC_PATH = [Path.resolve(process.cwd(), 'src/client')];
+const RESOLVED_ROOT_PATH = Path.resolve(process.cwd(), 'src/client');
+const CLIENT_SRC_PATH = [RESOLVED_ROOT_PATH];
 
 module.exports = {
 	entry: {
@@ -39,6 +38,7 @@ module.exports = {
 		}]
 	},
 	resolve: {
+		root: RESOLVED_ROOT_PATH,
 		extension: ['', '.js'],
 		modulesDirectories: ['node_modules']
 	},
