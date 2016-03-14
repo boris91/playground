@@ -2,7 +2,7 @@ import './.styl';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-export class PersonView extends React.Component {
+export default class PersonView extends React.Component {
 	static createView(model) {
 		return React.createElement(PersonView, model);
 	}

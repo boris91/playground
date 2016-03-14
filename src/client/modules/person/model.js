@@ -1,4 +1,4 @@
-export class PersonModel {
+export default class PersonModel {
 	constructor(id, name = 'Unnamed-Bitch', age = 0) {
 		Object.assign(this, {
 			name,

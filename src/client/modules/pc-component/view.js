@@ -8,7 +8,7 @@ const PriceFormatter = new Intl.NumberFormat('ru', {
 	maximumSignificantDigits: 3
 });
 
-export class PCComponentView extends React.Component {
+export default class PCComponentView extends React.Component {
 	static createView(model) {
 		return React.createElement(PCComponentView, model);
 	}
@@ -25,7 +25,11 @@ export class PCComponentView extends React.Component {
 		return <div className='pc-component-item' onClick={this.handleClick.bind(this)}>
 			<div className='name'>{this.props.name}</div>
 			<div className='title'>{this.props.title}</div>
-			<div className='price'>{PriceFormatter.format(this.props.price)}</div>
+			<div className='price'>
+				<div className='min'>{PriceFormatter.format(this.props.minPrice)}</div>
+				<span>&nbsp;-&nbsp;</span>
+				<div className='max'>{PriceFormatter.format(this.props.maxPrice)}</div>
+			</div>
 		</div>;
 	}
 };

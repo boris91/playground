@@ -1,8 +1,8 @@
 .pc-components-list
 	display inline-block
 	font-family "Courier New", Courier, monospace
-	background-color lightseagreen
-	border solid lightsalmon 2px
+	background-color lightslategrey
+	border solid rgba(255, 255, 255, 0.3) 2px
 	border-radius 10px
 
 	&>.pc-component-item
@@ -24,14 +24,19 @@
 			max-width 310px
 		&>.price
 			float right
-			background-color lightsalmon
-			border-radius 9px
-			padding 0 3px 0 3px
+			display inline-block
+			&>.min
+				float left
+				border-radius: 10px
+				padding 0 3px 0 3px
+				background-color rgba(0, 255, 0, 0.2)
+			&>.max
+				float right
+				border-radius: 10px
+				padding 0 3px 0 3px
+				background-color rgba(255, 0, 0, 0.2)
 
 		&:hover
 			background-color rgba(255, 255, 255, 0.5)
-			color rgba(0, 0, 0, 0.5)
+			color rgba(0, 0, 0, 0.9)
 			font-weight bold
-			&>.price
-				color rgba(255, 255, 255, 0.9)
-				font-weight normal

@@ -1,7 +1,7 @@
-import {PCComponentModel} from './model';
-import {PCComponentView} from './view';
+import PCComponentModel from './model';
+import PCComponentView from './view';
 
-export class PCComponentCtrl {
+export default class PCComponentCtrl {
 	constructor(rangeDatas = [], showOnInit = false) {
 		this._models = [];
 		this._views = {};
@@ -19,7 +19,7 @@ export class PCComponentCtrl {
 	}
 
 	create(pcComponentData) {
-		let model = new PCComponentModel(pcComponentData);
+		let model = new PCComponentModel(...pcComponentData);
 		this._models.push(model);
 		this._views[model.id] = PCComponentView.createView(model);
 		return this;

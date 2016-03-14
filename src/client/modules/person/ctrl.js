@@ -1,5 +1,5 @@
-import {PersonModel} from './model';
-import {PersonView} from './view';
+import PersonModel from './model';
+import PersonView from './view';
 
 export class PersonCtrl {
 	constructor() {
