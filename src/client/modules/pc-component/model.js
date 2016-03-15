@@ -1,22 +1,22 @@
 let instancesCounter = 0;
 
 export default class PCComponentModel {
-	static get newId() {
+	static get newKey() {
 		return '' + ++instancesCounter;
 	}
 
-	constructor(name = '-', title = '-', prices = '0–0', link = '#') {
-		prices = prices.replace(/ /g, '').split('–');
-		let id = PCComponentModel.newId;
-
+	constructor(key = PCComponentModel.newKey, name = '-', title = '-', minPrice = 0, maxPrice = 0, link = '#') {
 		Object.assign(this, {
-			id,
+			key,
 			name,
 			title,
-			minPrice: parseInt(prices[0]),
-			maxPrice: parseInt(prices[1]),
-			link,
-			key: id
+			minPrice,
+			maxPrice,
+			link
 		});
+	}
+
+	get id() {
+		return this.key;
 	}
 };
