@@ -1,6 +1,5 @@
 import './.styl';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const PriceFormatter = new Intl.NumberFormat('ru', {
 	style: 'currency',
@@ -8,21 +7,13 @@ const PriceFormatter = new Intl.NumberFormat('ru', {
 	maximumSignificantDigits: 3
 });
 
-export default class PCComponentView extends React.Component {
-	static createView(model) {
-		return React.createElement(PCComponentView, model);
-	}
-
-	static renderViews(views, root) {
-		ReactDOM.render(<div className='pc-components-list'>{views}</div>, root);
-	}
-
+export default class PCComponentShortListItemView extends React.Component {
 	handleClick() {
 		window.open(this.props.link);
 	}
 
 	render() {
-		return <div className='pc-component-item' onClick={this.handleClick.bind(this)}>
+		return <div className='pc-component-short-list-item' onClick={this.handleClick.bind(this)}>
 			<div className='name'>{this.props.name}</div>
 			<div className='title'>{this.props.title}</div>
 			<div className='price'>

@@ -1,10 +1,12 @@
 import PCComponentModel from './model';
-import PCComponentView from './view';
+import PCComponentShortListView from './short-list/view';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 export default class PCComponentCtrl {
 	constructor(rangeDatas = [], showOnInit = false) {
 		this._models = [];
-		this._views = {};
+		this._view = null;
 		this._root = document.querySelector('#app');
 
 		this.createRange(...rangeDatas);
@@ -14,22 +16,19 @@ export default class PCComponentCtrl {
 	}
 
 	createRange(...pcComponentsDatas) {
-		pcComponentsDatas.forEach(this.create, this);
+		pcComponentsDatas.forEach(this._create, this);
+		this._view = <PCComponentShortListView models={this._models}/>;
 		return this;
 	}
 
-	create(pcComponentData) {
+	_create(pcComponentData) {
 		let model = new PCComponentModel(...pcComponentData);
 		this._models.push(model);
-		this._views[model.id] = PCComponentView.createView(model);
 		return this;
 	}
 
 	show() {
-		let orderedViews = this._models.map((model) => {
-			return this._views[model.id];
-		});
-		PCComponentView.renderViews(orderedViews, this._root);
+		ReactDOM.render(this._view, this._root);
 		return this;
 	}
 };
