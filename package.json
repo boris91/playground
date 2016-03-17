@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server/app.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --content-base dst/",
+    "start": "webpack-dev-server",
     "webpack-bundle": "webpack --watch --progress --colors"
   },
   "author": "Boris Karbanovich",

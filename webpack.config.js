@@ -4,6 +4,10 @@ const RESOLVED_ROOT_PATH = Path.resolve(process.cwd(), 'src/client');
 const CLIENT_SRC_PATH = [RESOLVED_ROOT_PATH];
 
 module.exports = {
+	devServer: {
+		inline: true,
+		contentBase: 'dst/'
+	},
 	entry: {
 		app: [
 			'babel-polyfill',
