@@ -1,11 +1,6 @@
 import './.styl';
 import React from 'react';
-
-const PriceFormatter = new Intl.NumberFormat('ru', {
-	style: 'currency',
-	currency: 'RUB',
-	maximumSignificantDigits: 3
-});
+import PriceFormatter from 'modules/framework/formatters/price';
 
 export default class PCComponentShortListItemView extends React.Component {
 	handleClick() {
@@ -17,9 +12,9 @@ export default class PCComponentShortListItemView extends React.Component {
 			<div className='name'>{this.props.name}</div>
 			<div className='title'>{this.props.title}</div>
 			<div className='price'>
-				<div className='min'>{PriceFormatter.format(this.props.minPrice)}</div>
+				<div className='min'>{PriceFormatter(this.props.minPrice)}</div>
 				<span>&nbsp;-&nbsp;</span>
-				<div className='max'>{PriceFormatter.format(this.props.maxPrice)}</div>
+				<div className='max'>{PriceFormatter(this.props.maxPrice)}</div>
 			</div>
 		</div>;
 	}

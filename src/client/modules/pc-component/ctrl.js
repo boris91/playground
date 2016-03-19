@@ -17,8 +17,18 @@ export default class PCComponentCtrl {
 
 	createRange(...pcComponentsDatas) {
 		pcComponentsDatas.forEach(this._create, this);
-		this._view = <PCComponentShortListView models={this._models}/>;
+		this._view = <PCComponentShortListView models={this._models} totalPrice={this._getTotalPrices()}/>;
 		return this;
+	}
+
+	_getTotalPrices() {
+		let min = 0;
+		let max = 0;
+		this._models.forEach(model => {
+			min += model.minPrice;
+			max += model.maxPrice;
+		});
+		return {min, max};
 	}
 
 	_create(pcComponentData) {
