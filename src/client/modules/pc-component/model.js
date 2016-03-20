@@ -7,6 +7,7 @@ export default class PCComponentModel {
 
 	constructor(key = PCComponentModel.newKey, name = '-', title = '-', minPrice = 0, maxPrice = 0, link = '#') {
 		Object.assign(this, {
+			id: key,
 			key,
 			name,
 			title,
@@ -14,9 +15,5 @@ export default class PCComponentModel {
 			maxPrice,
 			link
 		});
-	}
-
-	get id() {
-		return this.key;
 	}
 };

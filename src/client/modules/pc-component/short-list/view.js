@@ -1,12 +1,19 @@
 import './.styl';
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PriceFormatter from 'modules/framework/formatters/price';
 import PCComponentShortListItemView from '../short-list-item/view';
 
 export default class PCComponentShortListView extends React.Component {
+	_getClickedItemId(node) {
+		return node ? node.dataset && node.dataset.itemId || this._getClickedItemId(node.parentNode) : null;
+	}
+
+	_onItemClick(event) {
+		console.log(this._getClickedItemId(event.target));
+	}
+
 	render() {
-		return <div className='pc-component-short-list'>
+		return <div className='pc-component-short-list' onClick={this._onItemClick.bind(this)}>
 			{this.props.models.map(model => <PCComponentShortListItemView {...model}/>)}
 			<div className='total-label'>Total:</div>
 			<div className='total-price'>

@@ -3,12 +3,8 @@ import React from 'react';
 import PriceFormatter from 'modules/framework/formatters/price';
 
 export default class PCComponentShortListItemView extends React.Component {
-	handleClick() {
-		window.open(this.props.link);
-	}
-
 	render() {
-		return <div className='pc-component-short-list-item' onClick={this.handleClick.bind(this)}>
+		return <div className='pc-component-short-list-item' data-item-id={this.props.id}>
 			<div className='name'>{this.props.name}</div>
 			<div className='title'>{this.props.title}</div>
 			<div className='price'>
