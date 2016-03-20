@@ -46,19 +46,15 @@ export default class PCComponentCtrl {
 	}
 
 	_fetchAllComponents() {
-		this._fetchComponents(PCComponentTypes.CENTRAL_PROCESSING_UNIT)
-			.then(() => this._fetchComponents(PCComponentTypes.MOTHERBOARD))
-			.then(() => this._fetchComponents(PCComponentTypes.RANDOM_ACCESS_MEMORY))
-			.then(() => this._fetchComponents(PCComponentTypes.SOLID_STATE_DRIVE))
-			.then(() => this._fetchComponents(PCComponentTypes.GRAPHICS_PROCESSING_UNIT))
-			.then(() => this._fetchComponents(PCComponentTypes.DISPLAY))
-			.then(() => this._fetchComponents(PCComponentTypes.SOUND))
-			.then(() => this._fetchComponents(PCComponentTypes.KEYBOARD))
-			.then(() => this._fetchComponents(PCComponentTypes.MOUSE))
-			.then(() => this.show());
+		let typesNames = Object.keys(PCComponentTypes);
+		let promise = this._fetchComponents(PCComponentTypes[typesNames[0]]);
+		for (let i = 1, typesCount = typesNames.length; i < typesCount; i++) {
+			promise = promise.then(() => this._fetchComponents(PCComponentTypes[typesNames[i]]));
+		}
+		promise.then(() => this.show());
 	}
 
-	_fetchComponents(type, autoRender) {
+	_fetchComponents(type) {
 		return this._requester.getData(type.requestFolderName);
 	}
 

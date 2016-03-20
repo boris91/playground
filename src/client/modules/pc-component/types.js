@@ -31,10 +31,17 @@ Object.keys(PCComponentTypes).forEach(typeName => {
 	Object.defineProperty(
 		typesByRequestFolderName,
 		type.requestFolderName,
-		{ value: type }
-	);
+		{
+			value: type,
+			enumerable: true
+		});
 });
 
-Object.defineProperty(PCComponentTypes, 'byRequestFolderName', { value: typesByRequestFolderName });
+Object.defineProperty(PCComponentTypes,
+	'byRequestFolderName',
+	{
+		value: typesByRequestFolderName,
+		enumerable: false
+	});
 
 export default PCComponentTypes;
