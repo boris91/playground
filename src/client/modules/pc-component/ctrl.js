@@ -3,7 +3,7 @@ import PCComponentModel from './model';
 import PCComponentShortListView from './short-list/view';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RequestManager from 'modules/framework/services/request-manager';
+import RequestManager from 'framework/request-manager';
 
 const ONLINER_SEARCH_URL = 'https://catalog.api.onliner.by/search';
 
@@ -63,9 +63,12 @@ export default class PCComponentCtrl {
 	}
 
 	_onComponentsFetched(data, requestFolderName) {
+		let type = PCComponentTypes.byRequestFolderName[requestFolderName];
+		let typeLabel = type.label;
+		let componentIdPrefix = type.shortName + '_';
 		data.products.forEach(component => this._create(
-			component.id,
-			PCComponentTypes.byRequestFolderName[requestFolderName].label,
+			componentIdPrefix + component.name.replace(/ /g, '~'),
+			typeLabel,
 			component.full_name,
 			component.prices.min,
 			component.prices.max,

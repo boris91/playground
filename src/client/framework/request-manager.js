@@ -1,5 +1,5 @@
-import Event from 'modules/framework/event';
-import QueryParamsFormatter from 'modules/framework/formatters/query-params';
+import Event from 'framework/event';
+import QueryParamsFormatter from 'framework/formatters/query-params';
 
 export default class RequestManager {
 	constructor(url, onOk, onFail) {

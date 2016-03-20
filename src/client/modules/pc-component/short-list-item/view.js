@@ -1,6 +1,6 @@
 import './.styl';
 import React from 'react';
-import PriceFormatter from 'modules/framework/formatters/price';
+import PriceFormatter from 'framework/formatters/price';
 
 export default class PCComponentShortListItemView extends React.Component {
 	render() {

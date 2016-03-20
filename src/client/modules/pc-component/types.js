@@ -1,4 +1,4 @@
-import ItemType from 'modules/framework/item-type';
+import ItemType from 'framework/item-type';
 
 const CENTRAL_PROCESSING_UNIT = new ItemType('CPU', 'cpu');
 const MOTHERBOARD = new ItemType('MBD', 'motherboard');
