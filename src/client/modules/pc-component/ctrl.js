@@ -4,15 +4,18 @@ import PCComponentShortListView from './short-list/view';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import RequestManager from 'framework/request-manager';
+import config from 'app/config';
 
-const ONLINER_SEARCH_URL = 'https://catalog.api.onliner.by/search';
+const PCComponentConfig = config.modules.PCComponent;
+const PCComponentTypesConfig = PCComponentConfig.Types;
+const OnlinerCatalogConfig = config.onlinerCatalog;
 
 export default class PCComponentCtrl {
 	constructor() {
 		this._models = [];
 		this._view = null;
 		this._root = document.querySelector('#app');
-		this._requester = new RequestManager(ONLINER_SEARCH_URL, this._onComponentsFetched.bind(this));
+		this._requester = new RequestManager(OnlinerCatalogConfig.searchUrl, this._onComponentsFetched.bind(this));
 		this.init();
 	}
 
@@ -46,22 +49,22 @@ export default class PCComponentCtrl {
 	}
 
 	_fetchAllComponents() {
-		let typesNames = Object.keys(PCComponentTypes);
-		let promise = this._fetchComponents(PCComponentTypes[typesNames[0]]);
-		for (let i = 1, typesCount = typesNames.length; i < typesCount; i++) {
-			promise = promise.then(() => this._fetchComponents(PCComponentTypes[typesNames[i]]));
+		let types = Object.keys(PCComponentTypes);
+		let promise = this._fetchComponents(types[0]);
+		for (let i = 1, typesCount = types.length; i < typesCount; i++) {
+			promise = promise.then(() => this._fetchComponents(types[i]));
 		}
 		promise.then(() => this.show());
 	}
 
 	_fetchComponents(type) {
-		return this._requester.getData(type.requestFolderName);
+		return this._requester.getData(OnlinerCatalogConfig.folders[type]);
 	}
 
-	_onComponentsFetched(data, requestFolderName) {
-		let type = PCComponentTypes.byRequestFolderName[requestFolderName];
-		let typeLabel = type.label;
-		let componentIdPrefix = type.shortName + '_';
+	_onComponentsFetched(data, onlinerCatalogFolder) {
+		let type = Object.keys(PCComponentTypes).find(type => onlinerCatalogFolder === OnlinerCatalogConfig.folders[type]);
+		let typeLabel = PCComponentTypesConfig.labels[type];
+		let componentIdPrefix = type + '_';
 		data.products.forEach(component => this._create(
 			componentIdPrefix + component.name.replace(/ /g, '~'),
 			typeLabel,
