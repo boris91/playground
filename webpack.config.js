@@ -6,8 +6,6 @@ const CLIENT_SRC_PATH = [RESOLVED_ROOT_PATH];
 
 export default {
 	devServer: {
-		host: 'localhost',
-		port: 8080,
 		stats: { colors: true },
 		contentBase: __dirname + '/dst/'
 	},
