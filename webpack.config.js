@@ -1,12 +1,15 @@
-const Path = require('path');
-const AutoprefixerStylus = require('autoprefixer-stylus');
+import Path from 'path';
+import AutoprefixerStylus from 'autoprefixer-stylus';
+
 const RESOLVED_ROOT_PATH = Path.resolve(process.cwd(), 'src/client');
 const CLIENT_SRC_PATH = [RESOLVED_ROOT_PATH];
 
-module.exports = {
+export default {
 	devServer: {
-		inline: true,
-		contentBase: 'dst/'
+		host: 'localhost',
+		port: 8080,
+		stats: { colors: true },
+		contentBase: __dirname + '/dst/'
 	},
 	entry: {
 		app: [
@@ -15,7 +18,7 @@ module.exports = {
 		]
 	},
 	output: {
-		path: './dst',
+		path: __dirname + '/dst/',
 		publicPath: '',
 		filename: '[name]-bundle.js'
 	},

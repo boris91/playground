@@ -4,13 +4,14 @@
   "description": "",
   "main": "src/server/app.js",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "babel-node src/server/app.js --presets es2015",
     "webpack-bundle": "webpack --watch --progress --colors"
   },
   "author": "Boris Karbanovich",
   "license": "ISC",
   "dependencies": {
     "autoprefixer-stylus": "^0.9.2",
+    "babel-cli": "^6.6.5",
     "babel-core": "^6.6.5",
     "babel-loader": "^6.2.4",
     "babel-polyfill": "^6.6.1",
@@ -26,11 +27,11 @@
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.0",
     "stylus-loader": "^1.5.1",
-    "webpack": "^1.12.14"
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
     "react": "^0.14.7",
-    "react-dom": "^0.14.7",
-    "webpack-dev-server": "^1.14.1"
+    "react-dom": "^0.14.7"
   }
 }
