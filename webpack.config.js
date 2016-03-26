@@ -1,4 +1,4 @@
-import Path from 'path';
+import Path               from 'path';
 import AutoprefixerStylus from 'autoprefixer-stylus';
 
 const RESOLVED_ROOT_PATH = Path.resolve(process.cwd(), 'src/client');

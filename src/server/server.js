@@ -1,7 +1,7 @@
-import config from './config';
-import webpack from 'webpack';
+import config           from './config';
+import webpack          from 'webpack';
 import WebpackDevServer from 'webpack-dev-server';
-import webpackConfig from '../../webpack.config';
+import webpackConfig    from '../../webpack.config';
 
 /**
  * inline mode for webpack-dev-server
