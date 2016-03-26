@@ -3,6 +3,6 @@ import 'app/.styl';
 import 'app/favicon.ico';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from 'app/router';
+import AppProvider from 'app/provider';
 
-ReactDOM.render(<AppRouter/>, document.querySelector('#root'));
+ReactDOM.render(<AppProvider/>, document.querySelector('#root'));
