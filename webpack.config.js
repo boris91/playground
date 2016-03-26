@@ -12,7 +12,7 @@ export default {
 	entry: {
 		app: [
 			'babel-polyfill',
-			'./src/client/app/app'
+			'./src/client/app/index'
 		]
 	},
 	output: {
