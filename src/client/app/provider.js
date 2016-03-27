@@ -3,9 +3,9 @@ import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
 import React from 'react';
 import AppRouter from 'app/router';
-import reducers from 'app/reducers';
+import appReducers from 'app/reducers';
 
-const appReducer = combineReducers(reducers);
+const appReducer = combineReducers(appReducers);
 const appStore = createStore(appReducer);
 
 export default class AppProvider extends React.Component {

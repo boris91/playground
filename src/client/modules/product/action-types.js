@@ -1,7 +1,5 @@
-import actionTypesCreator from 'framework/redux/action-types-creator';
-
-export default actionTypesCreator(
-	'CREATE_PRODUCT',
-	'EDIT_PRODUACT',
-	'DELETE_PRODUCT'
-);
+export default {
+	CREATE_PRODUCT: 'CREATE_PRODUCT',
+	EDIT_PRODUACT: 'EDIT_PRODUACT',
+	DELETE_PRODUCT: 'DELETE_PRODUCT'
+};
