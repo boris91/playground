@@ -30,7 +30,7 @@ export default {
 			test: /\.js$/,
 			include: CLIENT_SRC_PATH,
 			loader: 'babel',
-			query: { presets: ['es2015', 'react'] }
+			query: { presets: ['es2016', 'react'] }
 		}, {
 			test: /\.styl$/,
 			include: CLIENT_SRC_PATH,
