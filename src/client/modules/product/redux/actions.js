@@ -1,5 +1,5 @@
 import idGenerator from 'framework/id-generator';
-import ActionTypes from 'modules/product/action-types';
+import ActionTypes from 'modules/product/redux/action-types';
 
 export default {
 	createProduct: (data) => {

@@ -1,6 +1,6 @@
 import { List } from 'immutable';
 import reducerCreator from 'framework/redux/reducer-creator';
-import ActionTypes from 'modules/product/action-types';
+import ActionTypes from 'modules/product/redux/action-types';
 
 export default reducerCreator(new List(), {
 	[ActionTypes.CREATE_PRODUCT]: (state, action) => state.concat(action.data),
