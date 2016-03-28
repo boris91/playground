@@ -1,21 +1,16 @@
-//import Event from 'framework/event';
 import QueryParamsFormatter from 'framework/formatters/query-params';
 
 export default class RequestManager {
-	constructor(url, onOk, onFail) {
-		this.url = url;
-		//this.ok = new Event(onOk);
-		//this.fail = new Event(onFail);
-	}
+	send({ path, ok = ()=>{}, fail = ()=>{}, queryParams = null, data = null }) {
+		const url = path + (queryParams ? '?' + QueryParamsFormatter(queryParams) : '');
+		const params = {
+			method: data ? 'POST' : 'GET',
+			body: data ? JSON.stringify(data) : null
+		};
 
-	getData(urlPostfix = '', queryParamsObj = null) {
-		return fetch(this.url + '/' + urlPostfix + '?' + QueryParamsFormatter(queryParamsObj))
+		return fetch(url, params)
 			.then(response => response.json())
-			.then(json => {
-				//this.ok.trigger(json, urlPostfix);
-			})
-			.catch(error => {
-				//this.fail.trigger(error, urlPostfix)
-			});
+			.then(ok)
+			.catch(fail);
 	}
 };
