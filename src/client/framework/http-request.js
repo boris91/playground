@@ -2,10 +2,10 @@ import QueryParamsFormatter from 'framework/formatters/query-params';
 import ResponseHeadersParser from 'framwework/parsers/response-headers';
 import { ASYNC, Methods, Events, EventsOrder, States } from 'framework/request-constants';
 
-export default class RequestManager {
-	constructor(path, user, password, timeout, ...eventListeners/*onLoad, onProgress, onError, onTimeout*/) {
-		this.init(...arguments)
-			._xhr = new XMLHttpRequest();
+export default class HttpRequest {
+	constructor(path = '', user = '', password = '', timeout = 0, ...eventListeners/*onLoad, onProgress, onError, onTimeout*/) {
+		this._xhr = new XMLHttpRequest();
+		this.init(...arguments);
 	}
 
 	init(path, user, password, timeout, ...eventListeners/*onLoad, onProgress, onError, onTimeout*/) {
@@ -55,11 +55,18 @@ export default class RequestManager {
 		return this;
 	}
 
-	set timeout(timeoutMs) {
+	setPath(path) {
+		this._path = path;
+		return this;
+	}
+
+	setTimeout(timeoutMs) {
 		this._xhr.timeout = timeoutMs;
+		return this;
 	}
 
 	setCredentials(user, password) {
+		this._xhr.withCredentials = (user && password);
 		this._user = user;
 		this._password = password;
 		return this;
@@ -71,11 +78,9 @@ export default class RequestManager {
 	}
 
 	clear() {
-		delete this._path;
-		delete this._user;
-		delete this._password;
+		this._path = this._user = this._password = '';
 		this.setListeners(null, null, null, null);
-		this.timeout = undefined;
+		this._timeout = 0;
 		return this;
 	}
 
