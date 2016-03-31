@@ -16,12 +16,24 @@ export default class RequestManager {
 		return this;
 	}
 
+	post(data, queryParams, headers) {
+		this._send(Methods.POST, JSON.stringify(data), queryParams, headers);
+	}
+
 	get(queryParams, headers) {
 		this._send(Methods.GET, null, queryParams, headers);
 	}
 
-	post(data, queryParams, headers) {
-		this._send(Methods.POST, JSON.stringify(data), queryParams, headers);
+	put(data, queryParams, headers) {
+		this._send(Methods.PUT, JSON.stringify(data), queryParams, headers);
+	}
+
+	patch(data, queryParams, headers) {
+		this._send(Methods.PATCH, JSON.stringify(data), queryParams, headers);
+	}
+
+	delete(queryParams, headers) {
+		this._send(Methods.DELETE, null, queryParams, headers);
 	}
 
 	get isInProgress() {

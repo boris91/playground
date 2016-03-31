@@ -1,8 +1,11 @@
 export const ASYNC = true;
 
 export const Methods = {
-	GET: 'GET',
-	POST: 'POST'
+	POST: 'POST',    //Create
+	GET: 'GET',      //Read
+	PUT: 'PUT',      //Update/Replace
+	PATCH: 'PATCH',  //Update/Modify
+	DELETE: 'DELETE' //Delete
 };
 
 export const Events = {
