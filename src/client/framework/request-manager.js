@@ -1,4 +1,5 @@
 import QueryParamsFormatter from 'framework/formatters/query-params';
+import ResponseHeadersParser from 'framwework/parsers/response-headers';
 import { ASYNC, Methods, Events, EventsOrder, States } from 'framework/request-constants';
 
 export default class RequestManager {
@@ -17,23 +18,23 @@ export default class RequestManager {
 	}
 
 	post(data, queryParams, headers) {
-		this._send(Methods.POST, JSON.stringify(data), queryParams, headers);
+		return this._send(Methods.POST, JSON.stringify(data), queryParams, headers);
 	}
 
 	get(queryParams, headers) {
-		this._send(Methods.GET, null, queryParams, headers);
+		return this._send(Methods.GET, null, queryParams, headers);
 	}
 
 	put(data, queryParams, headers) {
-		this._send(Methods.PUT, JSON.stringify(data), queryParams, headers);
+		return this._send(Methods.PUT, JSON.stringify(data), queryParams, headers);
 	}
 
 	patch(data, queryParams, headers) {
-		this._send(Methods.PATCH, JSON.stringify(data), queryParams, headers);
+		return this._send(Methods.PATCH, JSON.stringify(data), queryParams, headers);
 	}
 
 	delete(queryParams, headers) {
-		this._send(Methods.DELETE, null, queryParams, headers);
+		return this._send(Methods.DELETE, null, queryParams, headers);
 	}
 
 	get isInProgress() {
@@ -41,8 +42,8 @@ export default class RequestManager {
 	}
 
 	get headers() {
-		//TODO: modify to return Object instead of String
-		return this._xhr.getAllResponseHeaders();
+		const headersString = this._xhr.getAllResponseHeaders();
+		return ResponseHeadersParser(headersString);
 	}
 
 	getHeader(key) {
@@ -75,6 +76,7 @@ export default class RequestManager {
 		delete this._password;
 		this.setListeners(null, null, null, null);
 		this.timeout = undefined;
+		return this;
 	}
 
 	_send(method, data, queryParams, headers) {
@@ -91,6 +93,7 @@ export default class RequestManager {
 			}
 		}
 		xhr.send(data);
+		return this;
 	}
 
 	_setListener(eventName, newListener) {
