@@ -1,10 +1,11 @@
 import QueryParamsFormatter from 'framework/formatters/query-params';
-import ResponseHeadersParser from 'framwework/parsers/response-headers';
-import { ASYNC, Methods, Events, EventsOrder, States } from 'framework/request-constants';
+import ResponseHeadersParser from 'framework/parsers/response-headers';
+import { ASYNC, RESPONSE_TYPE, Methods, Events, EventsOrder, States } from 'framework/request-constants';
 
 export default class HttpRequest {
 	constructor(path = '', user = '', password = '', timeout = 0, ...eventListeners/*onLoad, onProgress, onError, onTimeout*/) {
 		this._xhr = new XMLHttpRequest();
+		this._xhr.responseType = RESPONSE_TYPE;
 		this.init(...arguments);
 	}
 
@@ -51,7 +52,11 @@ export default class HttpRequest {
 	}
 
 	setListeners(...listeners/*onLoad, onProgress, onError, onTimeout*/) {
-		listeners.forEach((listener, index) => this._setListener(EventsOrder[index], listener));
+		listeners.forEach((listener, index) => {
+			const eventName = Events[EventsOrder[index]];
+			const decoratedListener = this._eventListenerDecorator.bind(this, listener);
+			this._setListener(eventName, decoratedListener);
+		}, this);
 		return this;
 	}
 
@@ -108,5 +113,9 @@ export default class HttpRequest {
 			this._xhr.addEventListener(eventName, newListener);
 		}
 		return this;
+	}
+
+	_eventListenerDecorator(listener, event) {
+		return listener(event.target.response);
 	}
 };

@@ -1,5 +1,7 @@
 export const ASYNC = true;
 
+export const RESPONSE_TYPE = 'json';
+
 export const Methods = {
 	POST: 'POST',    //Create
 	GET: 'GET',      //Read

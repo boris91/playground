@@ -62,17 +62,20 @@ export default class Task {
 	_onRequestLoad(data) {
 		this._isRunning = false;
 		this._isSucceed = true;
-		this._onTaskLoad(data);
+		const processedData = this._processData(data);
+		this._onTaskLoad(processedData);
 	}
 
 	_onRequestProgress(partialData) {
-		this._onTaskProgress(partialData);
+		const processedPartialData = this._processPartialData(partialData);
+		this._onTaskProgress(processedPartialData);
 	}
 
 	_onRequestError(error) {
 		this._isRunning = false;
 		this._isSucceed = false;
-		this._onTaskError(error);
+		const processedError = this._processError(error);
+		this._onTaskError(processedError);
 	}
 
 	_processData(data) {
