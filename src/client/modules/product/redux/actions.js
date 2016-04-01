@@ -2,7 +2,7 @@ import idGenerator from 'framework/id-generator';
 import ActionTypes from 'modules/product/redux/action-types';
 
 export default {
-	createProduct: (data) => {
+	createProduct(data) {
 		let id = idGenerator();
 		return {
 			type: ActionTypes.CREATE_PRODUCT,
@@ -14,7 +14,7 @@ export default {
 		};
 	},
 
-	editProduct: (id, data) => {
+	editProduct(id, data) {
 		return {
 			type: ActionTypes.EDIT_PRODUCT,
 			data: Object.assign(data, {
@@ -24,7 +24,7 @@ export default {
 		};
 	},
 
-	deleteProduct: (id) => {
+	deleteProduct(id) {
 		return {
 			type: ActionTypes.DELETE_PRODUCT,
 			id
