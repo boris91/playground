@@ -1,7 +1,1 @@
-export default {
-	modules: {
-		product: {
-			typesPath: '/product-types'
-		}
-	}
-};
+export default {};

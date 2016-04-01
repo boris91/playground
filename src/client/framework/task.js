@@ -15,14 +15,17 @@ export default class Task {
 			this._onRequestError.bind(this)
 		];
 
-		this._httpRequest = new HttpRequest(this._path, this._user, this._password, this._timeout, ...eventListeners);
+		this._httpRequest = new HttpRequest(this.path, this._user, this._password, this._timeout, ...eventListeners);
 		this._isRunning = false;
 		this._isSucceed = false;
 		this._isStopped = false;
 	}
 
-	configure({ path = '', headers = null, user = '', password = '', timeout = 0 }) {
-		this._path = path;
+	get path() {
+		return '';
+	}
+
+	configure({ headers = null, user = '', password = '', timeout = 0 }) {
 		this._headers = headers;
 		this._user = user;
 		this._password = password;
@@ -57,27 +60,39 @@ export default class Task {
 	}
 
 	_onRequestLoad(data) {
-		/**
-		 * Process data in ChildClass._onRequestLoad(...) method.
-		 */
 		this._isRunning = false;
 		this._isSucceed = true;
 		this._onTaskLoad(data);
 	}
 
 	_onRequestProgress(partialData) {
-		/**
-		 * Process partialData in ChildClass._onRequestProgress(...) method.
-		 */
 		this._onTaskProgress(partialData);
 	}
 
 	_onRequestError(error) {
-		/**
-		 * Process error in ChildClass._onRequestError(...) method.
-		 */
 		this._isRunning = false;
 		this._isSucceed = false;
 		this._onTaskError(error);
+	}
+
+	_processData(data) {
+		/**
+		 * Process data in ChildClass._processData method.
+		 */
+		return data;
+	}
+
+	_processPartialData(partialData) {
+		/**
+		 * Process partialData in ChildClass._processPartialData method.
+		 */
+		return partialData;
+	}
+
+	_processError(error) {
+		/**
+		 * Process error in ChildClass._processError method.
+		 */
+		return error;
 	}
 };
