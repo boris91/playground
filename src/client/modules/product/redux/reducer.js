@@ -1,9 +1,23 @@
 import { List } from 'immutable';
 import reducerCreator from 'framework/redux/reducer-creator';
 import ActionTypes from 'modules/product/redux/action-types';
+import ProductModel from 'modules/product/models/product';
 
 export default reducerCreator(new List(), {
-	[ActionTypes.CREATE_PRODUCT]: (state, action) => state.concat(action.data),
-	[ActionTypes.EDIT_PRODUCT]: (state, action) => state.set(action.id, action.data),
-	[ActionTypes.DELETE_PRODUCT]: (state, action) => state.delete(action.id)
+
+	[ActionTypes.CREATE_PRODUCT](state, action) {
+		const product = new ProductModel(action.data);
+		return state.concat(product);
+	},
+
+	[ActionTypes.EDIT_PRODUCT](state, action) {
+		const product = state.get(action.id);
+		product.edit(action.data);
+		return state.set(action.id, product);
+	},
+
+	[ActionTypes.DELETE_PRODUCT](state, action) {
+		return state.delete(action.id);
+	}
+
 });

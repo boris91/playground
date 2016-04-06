@@ -1,7 +1,13 @@
-import idGenerator from 'framework/id-generator';
+import DataModel from 'framework/base/data-model';
 
-export default class ProductType {
-	constructor(id = idGenerator(), name = '', abbreviation = '', description = '') {
+export default class ProductType extends DataModel {
+	constructor({
+			name = '',
+			abbreviation = '',
+			description = ''
+		} = {}) {
+
+		super(...arguments);
 		Object.assign(this, {
 			id,
 			name,
