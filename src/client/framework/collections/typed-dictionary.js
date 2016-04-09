@@ -17,16 +17,14 @@ export default class TypedDictionary {
 		return id in this._items;
 	}
 
-	add(id, ...props) {
-		this._items[id] = new this._Type(...props);
+	add(...itemProps) {
+		const item = new this._Type(...itemProps);
+		this._items[item.id] = item;
 		return this;
 	}
 
 	addRange(itemsPropsArray) {
-		itemsPropsArray.forEach(props => {
-			let item = new this._Type(...props);
-			this._items[item.id] = item;
-		});
+		itemsPropsArray.forEach(this.add, this);
 		return this;
 	}
 
@@ -42,6 +40,14 @@ export default class TypedDictionary {
 
 	setProp(id, key, value) {
 		this._items[id][key] = value;
+		return this;
+	}
+
+	edit(id, props) {
+		const item = this._items[id];
+		for (let key in props) {
+			item[key] = props[key];
+		}
 		return this;
 	}
 
