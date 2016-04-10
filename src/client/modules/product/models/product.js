@@ -1,17 +1,10 @@
 import DataModel from 'framework/base/data-model';
 
 export class ProductModel extends DataModel {
-	constructor({
-			manufacturer = '',
-			model = '',
-			price = 0,
-			description = '',
-			rating = 0
-		} = {}) {
-
-		super(...arguments);
+	constructor(id, typeId = '', manufacturer = '', model = '', price = 0, description = '', rating = 0) {
+		super(id);
 		Object.assign(this, {
-			id,
+			typeId,
 			manufacturer,
 			model,
 			price,

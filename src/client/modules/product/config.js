@@ -1,3 +1,4 @@
 export default {
-	typesPath: '/product-types'
+	typesPath: '/product-types',
+	itemsPath: '/product-items'
 };
