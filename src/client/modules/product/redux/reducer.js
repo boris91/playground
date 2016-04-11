@@ -4,19 +4,16 @@ import initialState from 'modules/product/redux/initial-state';
 
 export default reducerCreator(initialState, {
 
-	[ActionTypes.CREATE_PRODUCT](state, action) {
-		state.product.items.add(action.data);
-		return state;
+	[ActionTypes.CREATE_PRODUCT](stateCopy, action) {
+		stateCopy.product.items.add(action.data);
 	},
 
-	[ActionTypes.EDIT_PRODUCT](state, action) {
-		state.product.items.edit(action.id, action.data);
-		return state;
+	[ActionTypes.EDIT_PRODUCT](stateCopy, action) {
+		stateCopy.product.items.edit(action.id, action.data);
 	},
 
-	[ActionTypes.DELETE_PRODUCT](state, action) {
-		state.product.items.remove(action.id);
-		return state;
+	[ActionTypes.DELETE_PRODUCT](stateCopy, action) {
+		stateCopy.product.items.remove(action.id);
 	}
 
 });
