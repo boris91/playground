@@ -1,4 +1,4 @@
-import Path from 'path';
+import Path               from 'path';
 import AutoprefixerStylus from 'autoprefixer-stylus';
 
 const RESOLVED_ROOT_PATH = Path.resolve(process.cwd(), 'src/client');
@@ -12,7 +12,7 @@ export default {
 	entry: {
 		app: [
 			'babel-polyfill',
-			'./src/client/app/app'
+			'./src/client/app/index'
 		]
 	},
 	output: {
@@ -30,7 +30,7 @@ export default {
 			test: /\.js$/,
 			include: CLIENT_SRC_PATH,
 			loader: 'babel',
-			query: { presets: ['es2015', 'react'] }
+			query: { presets: ['es2016', 'react'] }
 		}, {
 			test: /\.styl$/,
 			include: CLIENT_SRC_PATH,
